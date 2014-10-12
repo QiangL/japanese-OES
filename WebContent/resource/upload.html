@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Japanese Upload</title>
+    <link href="/japanese-OES/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/japanese-OES/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="/japanese-OES/css/font-awesome.css" rel="stylesheet">
+    <link href="/japanese-OES/css/font-awesome-ie7.css" rel="stylesheet">
+    <link href="/japanese-OES/css/boot-business.css" rel="stylesheet">
+    <link href="/japanese-OES/css/default.css" rel="stylesheet">
+
+    <script type="text/javascript" src="/japanese-OES/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/japanese-OES/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/japanese-OES/js/boot-business.js"></script>
+    <script type="text/javascript" src="/japanese-OES/js/move.js"></script>
+    <script type="text/javascript" src="/japanese-OES/js/default-login.js"></script>
+  </head>
+  <body >
+    <header>
+      <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <a href="index.html" class="brand brand-bootbus">Japanese</a>
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <div class="nav-collapse collapse">        
+              <ul class="nav pull-right">
+                <li class="active"><a href="javascript:">试题上传</a></li>
+				<li ><a href="/japanese-OES/paperGenerate.html">组卷</a></li>
+				<li><a href="/japanese-OES/teacher/papers">选择考卷</a></li>
+				<li><a href="/japanese-OES/teacher/grade">评分</a></li>
+				<li><a href="/japanese-OES/about.html">关于</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div> 
+    </header>
+    <div class="content">
+      <div class="container">
+        <div class="row">
+          <div class="span6 offset3">
+            <h4 class="widget-header">试题上传上传</h4>
+            <div class="widget-body">
+              <div class="center-align">
+
+                <form enctype="multipart/form-data" class="form-horizontal form-signin-signup" action="/japanese-OES/teacher/upload" method="post">
+                  <div class="inputHolder" class="import">
+                    <h3 id="uploadspan">上传试题：</h3>
+                    <input type="file" id="uploadfile" name="file" accept=".zip">
+                  </div>
+					<input type="radio" name="type" value="general">普通试题
+					<input type="radio" name="type" value="img">图片题
+					<br>
+                  <input type="submit" value="上传" class="btn btn-primary btn-large">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="container">
+        <p>
+          &copy; 2014 Japanese, Inc. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<questions>
+  <generals>
+    <general id="1">
+      <name>测试</name>
+      <url>url</url>
+      <description>测试描述</description>
+    </general>
+  </generals>
+  <imgs>
+    <img id="2">
+      <name>测试</name>
+      <url>url</url>
+      <description>测试描述</description>
+      <resource/>
+    </img>
+  </imgs>
+</questions>

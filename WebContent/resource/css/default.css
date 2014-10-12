@@ -1,0 +1,67 @@
+.import{
+	position: relative;
+	margin-left: -200px;
+}
+#manFile{
+	position: relative;
+	margin-top: -120px;
+	margin-left: 300px;
+}
+#manager{
+	margin-left: 100px;
+}
+.changeContentOff{
+	display: none;
+}
+.changeContentOn{
+	position: relative;
+}
+.changeTable{
+	position: relative;
+	margin-left: 100px;
+}
+#changeShow{
+	width: 300px;
+	height: 200px;
+	position:absolute;
+	right: 20px;
+	top: 100px;
+}
+#changeTab{
+	width: 300px;
+	height: 200px;
+	position:absolute;
+	left: -300px;
+	top: 100px;
+}
+#changeForm{
+	position: relative;
+	left: 100px;
+}
+#tabContent{
+	position: relative;
+	left: 100px;
+}
+#changeStudent{
+
+}
+#changeTeacher{
+	display: none;
+}
+#uploadspan{
+	position: relative;
+	left: -100px;
+}
+#uploadfile{
+	position: relative;
+	left: 200px;
+	top: -50px;
+}
+#changeStudent td{
+	width: 80px;
+	height: 50px;
+}
+#changeTeacher td{
+	width: 80px;
+	height: 50px;
+}
