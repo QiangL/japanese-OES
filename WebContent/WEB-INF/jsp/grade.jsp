@@ -24,7 +24,7 @@
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
-				<a href="index.html" class="brand brand-bootbus">Japanese</a>
+				<a href="/japanese-OES/index.html" class="brand brand-bootbus">Japanese</a>
 				<button type="button" class="btn btn-navbar" data-toggle="collapse"
 					data-target=".nav-collapse">
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
@@ -36,7 +36,7 @@
 						<li><a href="/japanese-OES/paperGenerate.html">组卷</a></li>
 						<li><a href="/japanese-OES/teacher/papers">选择考卷</a></li>
 						<li class="active"><a href="#">评分</a></li>
-						<li><a href="about.html">关于</a></li>
+						<li><a href="/japanese-OES/about.html">关于</a></li>
 					</ul>
 				</div>
 			</div>

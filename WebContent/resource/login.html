@@ -9,6 +9,7 @@
     <link href="/japanese-OES/css/font-awesome-ie7.css" rel="stylesheet">
     <link href="/japanese-OES/css/boot-business.css" rel="stylesheet">
     <link href="/japanese-OES/css/default.css" rel="stylesheet">
+    <link href="/japanese-OES/css/login-form.css" rel="stylesheet">
 
     <script type="text/javascript" src="/japanese-OES/js/jquery.min.js"></script>
     <script type="text/javascript" src="/japanese-OES/js/bootstrap.min.js"></script>
@@ -43,23 +44,26 @@
           <div class="span6 offset3">
             <h4 class="widget-header"><i class="icon-lock"></i>Japanese-OES</h4>
             <div class="widget-body">
-              <div class="center-align">
+              <div class="form">
 
                 <form class="form-horizontal form-signin-signup" id="signupForm" action="/japanese-OES/user/login" method="post">
                   <div class="inputHolder">
                     <input class="validate" id="userName" type="text" name="userId" placeholder="用户名" />
-                    <img class="true" style="display:none" src="img/checkSmall.png" /> 
-                    <img class="false" style="display:none"  src="img/crossSmall.png" /> 
+                    <span  class="true"  style="display:none"><img  src="img/checkSmall.png" /> </span>
+                    <span class="false" style="display:none;position: static;font-size:12px;">  <img   src="img/crossSmall.png" />长度不合法(6~25) </span>
                   </div>
                   <div class="inputHolder">
                     <input class="validate" id="password" type="password" name="password" placeholder="密码" />
-                    <img class="true" style="display:none"  src="img/checkSmall.png" />
-                    <img class="false" style="display:none"  src="img/crossSmall.png" />  
+                    <span  class="true"  style="display:none"> <img src="img/checkSmall.png" /> </span>
+                     <span class="false" style="display:none;position: static;font-size:12px;"><img  src="img/crossSmall.png" />  长度不合法(6~25) </span>
                   </div>
-					<input type="radio" name="type" value="teacher">教师登陆
+                  <div class="submit-center">
+                  	<input type="radio" name="type" value="teacher">教师登陆
 					<input type="radio" name="type" value="student">学生登陆
 					<br>
                   <input type="submit" value="登陆" class="btn btn-primary btn-large">
+                  </div>
+					
                 </form>
               </div>
             </div>

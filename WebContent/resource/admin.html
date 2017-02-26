@@ -9,6 +9,7 @@
     <link href="/japanese-OES/css/font-awesome-ie7.css" rel="stylesheet">
     <link href="/japanese-OES/css/boot-business.css" rel="stylesheet">
     <link href="/japanese-OES/css/default.css" rel="stylesheet">
+    <link href="/japanese-OES/css/login-form.css" rel="stylesheet">
 
     <script type="text/javascript" src="/japanese-OES/js/jquery.min.js"></script>
     <script type="text/javascript" src="/japanese-OES/js/bootstrap.min.js"></script>
@@ -21,7 +22,7 @@
       <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
           <div class="container">
-            <a href="index.html" class="brand brand-bootbus">Japanese</a>
+            <a href="/japanese-OES/index.html" class="brand brand-bootbus">Japanese</a>
             <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
@@ -30,7 +31,7 @@
             <div class="nav-collapse collapse">        
               <ul class="nav pull-right">
                 <li><a href="javaScript:;" class="active-link">登陆</a></li>
-                <li><a href="about.html">关于</a></li>
+                <li><a href="/japanese-OES/about.html">关于</a></li>
               </ul>
             </div>
           </div>
@@ -43,20 +44,20 @@
           <div class="span6 offset3">
             <h4 class="widget-header"><i class="icon-lock"></i>管理员登陆</h4>
             <div class="widget-body">
-              <div class="center-align">
+              <div class="form">
 
                 <form class="form-horizontal form-signin-signup" id="signupForm" action="/japanese-OES/admin/login" method="post">
                   <div class="inputHolder">
                     <input class="validate" id="userName" type="text" name="name" placeholder="用户名" />
-                    <img class="true" style="display:none" src="img/checkSmall.png" /> 
-                    <img class="false" style="display:none"  src="img/crossSmall.png" /> 
+                    <span  class="true"  style="display:none"><img  src="img/checkSmall.png" /> </span>
+                    <span class="false" style="display:none;position: static;font-size:12px;">  <img   src="img/crossSmall.png" />长度不合法(6~25) </span>
                   </div>
                   <div class="inputHolder">
                     <input class="validate" id="password" type="password" name="password" placeholder="密码" />
-                    <img class="true" style="display:none"  src="img/checkSmall.png" />
-                    <img class="false" style="display:none"  src="img/crossSmall.png" />  
+                    span  class="true"  style="display:none"> <img src="img/checkSmall.png" /> </span>
+                     <span class="false" style="display:none;position: static;font-size:12px;"><img  src="img/crossSmall.png" />  长度不合法(6~25) </span>
                   </div>
-
+					<div class="submit-center"></div>
                   <input type="submit" value="登陆" class="btn btn-primary btn-large">
                 </form>
               </div>

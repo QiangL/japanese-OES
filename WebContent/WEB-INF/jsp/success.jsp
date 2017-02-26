@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>选择考卷</title>
+<title>上传成功</title>
 <link href="/japanese-OES/css/bootstrap.min.css" rel="stylesheet">
     <link href="/japanese-OES/css/bootstrap-responsive.min.css" rel="stylesheet">
     <link href="/japanese-OES/css/font-awesome.css" rel="stylesheet">
@@ -42,48 +42,17 @@
 			</div>
 		</div>
 	</header>
-	<div class="container-fluid">
-		<div class="row-fluid">
-			<div class="span12">
-				<h3>选择将要使用的考卷</h3>
-				<table class="table">
-					<thead>
-						<tr>
-							<th>试卷名</th>
-							<th>组卷时间</th>
-							<th>选择</th>
-							<th>详情</th>
-						</tr>
-					</thead>
-					<tbody>
-					<c:forEach var="paper" items="${papers}" varStatus="index">
-						<tr>
-							<td>${paper.name}</td>
-							<td>${paper.time}</td>
-							<td style="display:none" id="examId">${paper.id}</td>
-							<td><input type="radio" name="select"></td>
-							<td><input class="btn btn-info" type="button" value="试题内容" flag="false"></td>
-						</tr>
-					</c:forEach>
-					
-					</tbody>
-				</table>
-				<input class="btn btn-warning" type="button" value="提交">
+	<div class="container">
+		<div style="margin:100px auto;width:200px;">
+		  
+	<div class="panel panel-success">
+			<div class="panel-heading">
+				<h3 class="panel-title">压缩包上传成功！</h3>
 			</div>
-			<div class="span8" >
-			<h3>试卷内容</h3>
-				<table class="table" id="details" style="display:none">
-			 	  <thead>
-			 	    <tr>
-			 	      <th>试题名</th>
-			 	      <th>类型</th>
-			 	      <th>上传时间</th>
-			 	    </tr>
-			 	  </thead>
-			 	  <tbody></tbody>
-				</table>
+			<div class="panel-body">
 			</div>
-		</div>
 	</div>
-</body>
+	</div>
+	</div>
+  </body>
 </html>

@@ -70,11 +70,7 @@ public class BaseController {
 	
 	public String toJson(Object object,Type type){
 		String string = null;
-		try {
-			 string = new String(gson.toJson(object).getBytes(),"utf-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
+		string = new String(gson.toJson(object).getBytes());
 		return string;
 	}
 	

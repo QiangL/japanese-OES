@@ -2,21 +2,25 @@ package org.ssdut.japanese.oes.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.ssdut.japanese.oes.cons.CommonConstant;
 import org.ssdut.japanese.oes.cons.QuestionType;
 import org.ssdut.japanese.oes.dao.impl.Page;
@@ -36,7 +40,31 @@ public class TeacherController extends BaseController{
 
 	@Autowired
 	TeacherService teacherService;
-	
+	@RequestMapping(value="teacher/login",method=RequestMethod.POST)
+	public String login(HttpServletRequest request, 
+			String userId,String password
+			,ModelMap modelMap){
+		Teacher t=new Teacher();
+		t.setTeacherId(userId);
+		t.setPassword(password);
+		try {
+			//密码验证
+			if(teacherService.login(t)){
+				//setSessionUser(request, t);
+				String toUrl = (String)request.getSession().getAttribute(CommonConstant.LOGIN_TO_URL);
+			}
+			else{
+				modelMap.addAttribute("errorMsg", "密码错误，请再次确认");
+				return "error";
+			}
+		}catch (UserNotFoundException e) {
+			//用户不存在
+			modelMap.addAttribute("errorMsg", e.getMessage());
+			return "error";
+		}
+		return "redirect:/paperGenerate.html";
+	}
+	/*
 	@RequestMapping(value="teacher/login",method=RequestMethod.POST)
 	public ModelAndView login(HttpServletRequest request, 
 			String userId,String password){
@@ -64,7 +92,7 @@ public class TeacherController extends BaseController{
 		}
 		return mav;
 	}
-	
+	*/
 	/*
 	 * @function 老师上传试题 暂时的解决方案是直接存放在resource文件夹下
 	 * @param file：试题的压缩文件  type：试题类型
@@ -100,7 +128,7 @@ public class TeacherController extends BaseController{
 		teacherService.uploadFile(temp + name, resourcePath, type);
 		tempFile.delete();//删除临时文件
 		//ModelAndView mav = new ModelAndView();
-		return null;
+		return new ModelAndView("success");
 	}
 	
 	
@@ -109,7 +137,7 @@ public class TeacherController extends BaseController{
 	 * @param page 页号
 	 * @param type 题目类型
 	 * */
-	@RequestMapping("teacher/questions")
+	@RequestMapping(value="teacher/questions",method=RequestMethod.POST)
 	@ResponseBody
 	public Object showQuestionG(@RequestParam(required=false)Integer page,
 			String type){
@@ -126,9 +154,7 @@ public class TeacherController extends BaseController{
 		default:
 			break;
 		}
-		
 		Type type2 = new TypeToken<Map<String,Object>>(){}.getType();
-		
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("questions", pagedResult.getResult());
 		map.put("currentPage", pagedResult.getCurrentPageNo());

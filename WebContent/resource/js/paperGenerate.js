@@ -71,8 +71,9 @@ $(document).ready(function(){
 			url += "&page=" + pageNo;
 		$.ajax({
 			url:url,
-			async:false,
-			success:function(data){
+			type:"POST",
+			async: false,
+			success: function (data) {
 				var json = eval('('+data+')');
 				var currentPage = json.currentPage;
 				var totalPageCount = json.totalPageCount;

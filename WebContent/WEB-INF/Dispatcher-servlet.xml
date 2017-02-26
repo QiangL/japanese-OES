@@ -36,7 +36,7 @@
 	<mvc:default-servlet-handler />
 
 	<!-- 支持静态资源 -->
-	<mvc:resources location="/resource/" mapping="/*" />
+	<mvc:resources location="/resource/" mapping="/**" />
 
 	<!-- 处理在类级别上的@RequestMapping注解 -->
 	<bean

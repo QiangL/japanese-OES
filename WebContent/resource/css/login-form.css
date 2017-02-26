@@ -1,0 +1,8 @@
+@CHARSET "UTF-8";
+.form{
+	margin-left: 15%;
+}
+.submit-center{
+	text-align:center;
+	margin-left:-25%;
+}

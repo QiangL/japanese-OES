@@ -9,10 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.tools.ant.taskdefs.condition.Http;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.ssdut.japanese.oes.cons.CommonConstant;
 import org.ssdut.japanese.oes.entity.ExaminationStructure;
 import org.ssdut.japanese.oes.entity.Record;
@@ -39,44 +41,43 @@ public class UserController extends BaseController{
 	 * @param type 登陆角色 有两个可选值 ："student"和 "teacher"
 	 * */
 	@RequestMapping(value = "user/login" , method=RequestMethod.POST)
-	public ModelAndView login(HttpServletRequest request,
-			HttpServletResponse response,User user,String type){
-		ModelAndView mav = new ModelAndView();
+	public String login(HttpServletRequest request,
+			HttpServletResponse response,User user,String type
+			,ModelMap modelMap){
 		if(type == null){
-			mav.addObject("errorMsg", "请选择登陆角色");
-			mav.setViewName("redirect:/login.html");
-			return mav;
+			modelMap.addAttribute("errorMsg", "请选择登陆角色");
+			return "error";
 		}
 		
 		//重定向到教师验证
 		if(type.equals("teacher")){
-			return new ModelAndView("forward:/teacher/login");
+			return "forward:/teacher/login";
 		}
 		else if(type.equals("student")){
-		try {
-			//密码验证
-			if(userService.login(user)){
-				setSessionUser(request, user);
-				mav.setViewName("begin");
-				user = userService.getUserById(user.getUserId());
-				ExaminationStructure es = userService.getES();
-				mav.addObject("user", user);
-				mav.addObject("es", es);
+			try {
+				//密码验证
+				if(userService.login(user)){
+					setSessionUser(request, user);
+					user = userService.getUserById(user.getUserId());
+					ExaminationStructure es = userService.getES();
+					modelMap.addAttribute("user", user);
+					modelMap.addAttribute("es", es);
+					return  "begin";
+				}
+				else{
+					modelMap.addAttribute("errorMsg", "密码错误，请再次确认");
+					return "error";
+				}
+			} catch (UserNotFoundException e) {
+				//用户不存在
+				modelMap.addAttribute("errorMsg", e.getMessage());
+				return "error";
 			}
-			else{
-				mav.addObject("errorMsg", "密码错误，请再次确认");
-				mav.setViewName("redirect:/login.html");
-				return mav;
-			}
-		} catch (UserNotFoundException e) {
-			//用户不存在
-			mav.addObject("errorMsg", e.getMessage());
-			mav.setViewName("redirect:/login.html");
-			return mav;
+			
 		}
-		}
+		modelMap.addAttribute("errorMsg", "登陆身份无效");
+		return "error";
 		
-		return mav;
 	}
 
 	

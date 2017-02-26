@@ -10,11 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.ssdut.japanese.oes.dao.impl.Page;
 import org.ssdut.japanese.oes.entity.Teacher;
 import org.ssdut.japanese.oes.entity.User;
@@ -37,13 +39,18 @@ public class AdminController extends BaseController{
 	 * 管理员账户密码硬编码在web.xml文件中
 	 * */
 	@RequestMapping("admin/login")
-	public ModelAndView login(HttpServletRequest request,String name , String password){
+	public String login(HttpServletRequest request,String name , String password
+			,ModelMap modelMap){
 		ServletContext ctx = getSession(request).getServletContext();
 		String admin = ctx.getInitParameter("admin");
 		String pass = ctx.getInitParameter("password");
-		if(admin.equals(name) && pass.equals(password))
-			return new ModelAndView("import");
-		return new ModelAndView("redirect:/admin.html");
+		if(admin.equals(name) && pass.equals(password)){
+			return "import";
+		}
+		else{
+			modelMap.addAttribute("errorMsg", "用户名或密码错误");
+			return "error";
+		}
 	}
 	
 	@RequestMapping("admin/getImport")
