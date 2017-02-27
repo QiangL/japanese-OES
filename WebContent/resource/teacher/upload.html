@@ -9,6 +9,7 @@
     <link href="/japanese-OES/css/font-awesome-ie7.css" rel="stylesheet">
     <link href="/japanese-OES/css/boot-business.css" rel="stylesheet">
     <link href="/japanese-OES/css/default.css" rel="stylesheet">
+    <link href="/japanese-OES/css/login-form.css" rel="stylesheet">
 
     <script type="text/javascript" src="/japanese-OES/js/jquery.min.js"></script>
     <script type="text/javascript" src="/japanese-OES/js/bootstrap.min.js"></script>
@@ -30,7 +31,7 @@
             <div class="nav-collapse collapse">        
               <ul class="nav pull-right">
                 <li class="active"><a href="javascript:">试题上传</a></li>
-				<li ><a href="/japanese-OES/paperGenerate.html">组卷</a></li>
+				<li ><a href="/japanese-OES/teacher/paperGenerate.html">组卷</a></li>
 				<li><a href="/japanese-OES/teacher/papers">选择考卷</a></li>
 				<li><a href="/japanese-OES/teacher/grade">评分</a></li>
 				<li><a href="/japanese-OES/about.html">关于</a></li>
@@ -44,11 +45,12 @@
       <div class="container">
         <div class="row">
           <div class="span6 offset3">
-            <h4 class="widget-header">试题上传上传</h4>
+            <h4 class="widget-header">试题上传</h4>
             <div class="widget-body">
               <div class="center-align">
-
-                <form enctype="multipart/form-data" class="form-horizontal form-signin-signup" action="/japanese-OES/teacher/upload" method="post">
+				<div id="login-alert" class="alert  alert-danger text-center col-sm-8 col-sm-offset-2" role="alert">
+                </div>
+                <form enctype="multipart/form-data" class="form-horizontal form-signin-signup" action="/japanese-OES/teacher/uploadFile" method="post">
                   <div class="inputHolder" class="import">
                     <h3 id="uploadspan">上传试题：</h3>
                     <input type="file" id="uploadfile" name="file" accept=".zip">

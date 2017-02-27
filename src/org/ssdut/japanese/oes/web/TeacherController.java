@@ -60,9 +60,9 @@ public class TeacherController extends BaseController{
 		}catch (UserNotFoundException e) {
 			//用户不存在
 			modelMap.addAttribute("errorMsg", e.getMessage());
-			return "redirect:/login.html";
+			return "redirect:/teacher/login.html";
 		}
-		return "redirect:/paperGenerate.html";
+		return "redirect:/teacher/paperGenerate.html";
 	}
 	/*
 	@RequestMapping(value="teacher/login",method=RequestMethod.POST)
@@ -98,12 +98,12 @@ public class TeacherController extends BaseController{
 	 * @param file：试题的压缩文件  type：试题类型
 	 * 
 	 * */
-	@RequestMapping(value="teacher/upload",method=RequestMethod.POST)
-	public ModelAndView upLoad(HttpServletRequest request ,
+	@RequestMapping(value="teacher/uploadFile",method=RequestMethod.POST)
+	public ModelAndView uploadFile(HttpServletRequest request ,
 			@RequestParam(value="file",required=true) MultipartFile file,
 			String type){
 		if(type == null){
-			ModelAndView mav =  new ModelAndView("redirect:/upload.html");
+			ModelAndView mav =  new ModelAndView("redirect:/teacher/upload.html");
 			mav.addObject("errorMsg", "请选择试题上传类型");
 			return mav;
 		}

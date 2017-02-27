@@ -31,8 +31,8 @@
 					</button>
 					<div class="nav-collapse collapse">
 						<ul class="nav pull-right">
-							<li><a href="/japanese-OES/upload.html">试题上传</a></li>
-							<li><a href="/japanese-OES/paperGenerate.html">组卷</a></li>
+							<li><a href="/japanese-OES/teacher/upload.html">试题上传</a></li>
+							<li><a href="/japanese-OES/teacher/paperGenerate.html">组卷</a></li>
 							<li class="active"><a href="javascript:">选择考卷</a></li>
 							<li><a href="/japanese-OES/teacher/grade">评分</a></li>
 							<li><a href="/japanese-OES/about.html">关于</a></li>
@@ -65,7 +65,6 @@
 							<td><input class="btn btn-info" type="button" value="试题内容" flag="false"></td>
 						</tr>
 					</c:forEach>
-					
 					</tbody>
 				</table>
 				<input class="btn btn-warning" type="button" value="提交">

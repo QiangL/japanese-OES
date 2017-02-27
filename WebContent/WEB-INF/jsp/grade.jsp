@@ -32,8 +32,8 @@
 				</button>
 				<div class="nav-collapse collapse">
 					<ul class="nav pull-right">
-						<li><a href="/japanese-OES/upload.html">试题上传</a></li>
-						<li><a href="/japanese-OES/paperGenerate.html">组卷</a></li>
+						<li><a href="/japanese-OES/teacher/upload.html">试题上传</a></li>
+						<li><a href="/japanese-OES/teacher/paperGenerate.html">组卷</a></li>
 						<li><a href="/japanese-OES/teacher/papers">选择考卷</a></li>
 						<li class="active"><a href="#">评分</a></li>
 						<li><a href="/japanese-OES/about.html">关于</a></li>
