@@ -48,16 +48,8 @@
 			<div  class="span12">
 				<h3>选择将要使用的考卷</h3>
 				<div id="papers"></div>
+				<!--  
 				<table class="table">
-					<thead>
-						<tr>
-							<th>试卷名</th>
-							<th>组卷时间</th>
-							<th>选择</th>
-							<th>详情</th>
-						</tr>
-					</thead>
-					<!--  
 					<tbody id="papers">
 					
 					<c:forEach var="paper" items="${papers}" varStatus="index">
@@ -71,9 +63,10 @@
 					</c:forEach>
 					
 					</tbody>
-					-->
+					
 				</table>
-				<input class="btn btn-warning" type="button" value="提交">
+				-->
+				<input class="btn btn-warning" type="button" value="为学生布置该试卷">
 			</div>
 			<div class="span8" >
 			<h3>试卷内容</h3>

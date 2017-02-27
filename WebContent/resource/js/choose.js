@@ -24,7 +24,7 @@ $(document).ready(function() {
 		var path = "/japanese-OES/exam/" + s[0].innerText + ".xml";
 		$.ajax({
 			url:path,
-			dataType:'xml',
+			dataType: 'xml',
 			success:function(data){
 				$('#details').find('tbody').empty();
 				$(data).find("generals").children().each(function(index,ele){

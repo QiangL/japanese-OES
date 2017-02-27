@@ -1,10 +1,15 @@
 package org.ssdut.japanese.oes.util;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+
+import jxl.demo.Write;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
@@ -67,6 +72,14 @@ public class XMLUtil {
 				general.addAttribute("id", question.getId());//设置试题id
 				general.addElement("name").addText(question.getName());//设置文件名
 				general.addElement("url").addText(question.getUrl());//设置url
+				try {
+					String s=new String(question.getDescription().getBytes("UTF-8"),"UTF-8");
+					System.out.println(s);
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 				general.addElement("description").addText(question.getDescription());
 			}
 			//imgQuestion
@@ -84,10 +97,12 @@ public class XMLUtil {
 	
 	public static void saveDocument(Document document , File outputXML){
 		//美化格式
+		 //XML内容编码和文档本身的编码要一致！
 		OutputFormat format = OutputFormat.createPrettyPrint();
 		format.setEncoding("UTF-8");
 		try {
-			XMLWriter outputWriter = new XMLWriter(new FileWriter(outputXML), 
+			OutputStreamWriter xmlwrite=new OutputStreamWriter(new FileOutputStream(outputXML),"UTF-8");
+			XMLWriter outputWriter = new XMLWriter(xmlwrite, 
 					format);
 			outputWriter.write(document);
 			outputWriter.close();
