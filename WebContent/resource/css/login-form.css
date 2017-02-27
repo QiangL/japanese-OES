@@ -6,3 +6,7 @@
 	text-align:center;
 	margin-left:-25%;
 }
+#login-alert{
+	display: none;
+	width: 62%;
+}

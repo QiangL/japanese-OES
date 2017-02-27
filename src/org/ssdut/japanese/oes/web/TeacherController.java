@@ -55,12 +55,12 @@ public class TeacherController extends BaseController{
 			}
 			else{
 				modelMap.addAttribute("errorMsg", "密码错误，请再次确认");
-				return "error";
+				return "redirect:/login.html";
 			}
 		}catch (UserNotFoundException e) {
 			//用户不存在
 			modelMap.addAttribute("errorMsg", e.getMessage());
-			return "error";
+			return "redirect:/login.html";
 		}
 		return "redirect:/paperGenerate.html";
 	}

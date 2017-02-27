@@ -49,7 +49,7 @@ public class AdminController extends BaseController{
 		}
 		else{
 			modelMap.addAttribute("errorMsg", "用户名或密码错误");
-			return "error";
+			return "redirect:/login.html";
 		}
 	}
 	

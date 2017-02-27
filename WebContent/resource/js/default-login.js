@@ -1,4 +1,12 @@
+$(document).ready(function () {
+  var search = window.location.search;
+  var i = search.indexOf("errorMsg");
+  if (i != -1) {
+    $("#login-alert").text(decodeURI(search.substring(i +9, search.length)))
+    .css("display","block")  ;
 
+  }
+});
 
 $(function(){
 	$("#signupForm").submit(function(e)

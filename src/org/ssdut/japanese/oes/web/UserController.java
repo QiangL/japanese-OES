@@ -66,17 +66,17 @@ public class UserController extends BaseController{
 				}
 				else{
 					modelMap.addAttribute("errorMsg", "密码错误，请再次确认");
-					return "error";
+					return "redirect:/login.html";
 				}
 			} catch (UserNotFoundException e) {
 				//用户不存在
 				modelMap.addAttribute("errorMsg", e.getMessage());
-				return "error";
+				return "redirect:/login.html";
 			}
 			
 		}
 		modelMap.addAttribute("errorMsg", "登陆身份无效");
-		return "error";
+		return "redirect:/login.html";
 		
 	}
 
