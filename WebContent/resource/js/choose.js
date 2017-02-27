@@ -1,8 +1,8 @@
 $(document).ready(function() {
 	var exam = "";
-	$('input[type=radio]').click(function(){
-		var tr = $(this).parent().siblings()[2];//id
-		exam = tr.innerHTML;
+	$('input[type=radio]').live("click", function () {
+		var tr = $(this).parents().siblings(".examId");//id
+		exam = tr.html();
 	});
 	
 	$('.btn-warning').click(function(){

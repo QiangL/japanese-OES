@@ -202,6 +202,25 @@ public class TeacherController extends BaseController{
 		return mav;
 	}
 	
+	/**
+	 * 以JSON方式异步返回papers的目录
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="teacher/choosePaper",method=RequestMethod.POST)
+	@ResponseBody
+	public String choosePaper(Integer pageNo){
+		if(pageNo == null)
+			pageNo = Integer.valueOf(1);
+		Page page = teacherService.getPaper(pageNo);
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("papers", page.getResult());
+		map.put("currentPageNo", page.getCurrentPageNo());
+		map.put("totalPageCount", page.getTotalPageCount());
+		/*这里没有设置第二个参数!*/
+		return toJson(map,null);
+	}
+	
 	/*
 	 * @function 设置将要使用的考卷
 	 * @param id 将要使用的考卷id

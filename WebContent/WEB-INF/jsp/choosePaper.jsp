@@ -16,6 +16,7 @@
     <script type="text/javascript" src="/japanese-OES/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/japanese-OES/js/boot-business.js"></script>
     <script type="text/javascript" src="/japanese-OES/js/choose.js"></script>
+    <script type="text/javascript" src="/japanese-OES/js/choosePaper.js"></script>
 </head>
 
 <body>
@@ -44,8 +45,9 @@
 	</header>
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<div class="span12">
+			<div  class="span12">
 				<h3>选择将要使用的考卷</h3>
+				<div id="papers"></div>
 				<table class="table">
 					<thead>
 						<tr>
@@ -55,7 +57,9 @@
 							<th>详情</th>
 						</tr>
 					</thead>
-					<tbody>
+					<!--  
+					<tbody id="papers">
+					
 					<c:forEach var="paper" items="${papers}" varStatus="index">
 						<tr>
 							<td>${paper.name}</td>
@@ -65,7 +69,9 @@
 							<td><input class="btn btn-info" type="button" value="试题内容" flag="false"></td>
 						</tr>
 					</c:forEach>
+					
 					</tbody>
+					-->
 				</table>
 				<input class="btn btn-warning" type="button" value="提交">
 			</div>
