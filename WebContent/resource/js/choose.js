@@ -19,7 +19,7 @@ $(document).ready(function() {
 	});
 	
 	//请求试题的xml文件 并将试题信息展现到页面
-	$('.btn-info').click(function(){
+	$('.btn-info').live("click",function(){
 		var s = $(this).parents('tr').children('td');
 		var path = "/japanese-OES/exam/" + s[0].innerText + ".xml";
 		$.ajax({

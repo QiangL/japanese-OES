@@ -1,6 +1,9 @@
 package org.ssdut.japanese.oes.web;
 
+import java.beans.XMLEncoder;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
@@ -60,7 +63,7 @@ public class TeacherController extends BaseController{
 		}catch (UserNotFoundException e) {
 			//用户不存在
 			modelMap.addAttribute("errorMsg", e.getMessage());
-			return "redirect:/teacher/login.html";
+			return "redirect:/login.html";
 		}
 		return "redirect:/teacher/paperGenerate.html";
 	}
@@ -172,10 +175,11 @@ public class TeacherController extends BaseController{
 	@ResponseBody
 	public Object generateTestPaper(HttpServletRequest request,
 		@RequestParam(required=true) String questions,
-		@RequestParam(required=true) String examName){
+		@RequestParam(required=true) String examName) throws FileNotFoundException{
 		Type type = new TypeToken<List<Bean>>() {}.getType();
 		List<Bean> questionList = (List<Bean>) fromJson(questions, type);
 		//试卷命名规则: 教师指定名字+组卷时间
+		System.out.println(questionList);
 		String path = getResourcePath(request) + "/exam/" + examName;
 		try {
 			teacherService.generateTestPaper(questionList, path);

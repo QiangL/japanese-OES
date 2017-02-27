@@ -7,7 +7,8 @@ $(document).ready(function(){
 	
 	$.ajax({
 		url:"/japanese-OES/exam/"+name+".xml",
-		dataType:'xml',
+    dataType: 'xml',
+    content:"application/xml; charset=UTF-8",
 		success:function(data){
 			examContent = data;
 			display(examContent,"general");

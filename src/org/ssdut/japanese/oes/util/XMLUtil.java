@@ -58,8 +58,6 @@ public class XMLUtil {
 		Element root = document.addElement("questions");
 		Element generalTypeElement = root.addElement("generals");
 		Element imgTypeElement = root.addElement("imgs");
-		
-		
 		//遍历试题链表 为每个试题在xml文件中添加一个节点
 		for (Question question : questions) {
 			//generalQeustion 
@@ -87,7 +85,7 @@ public class XMLUtil {
 	public static void saveDocument(Document document , File outputXML){
 		//美化格式
 		OutputFormat format = OutputFormat.createPrettyPrint();
-		format.setEncoding("utf-8");
+		format.setEncoding("UTF-8");
 		try {
 			XMLWriter outputWriter = new XMLWriter(new FileWriter(outputXML), 
 					format);
