@@ -61,7 +61,7 @@ public class UserDaoImp extends BaseDao<User> implements UserDao {
 	
 	//检测该班级是否在数据库中已存在 如不存在则保存
 	private void handleClass(String classNumber){
-		String HQL = "from class where class.name = ?";
+		String HQL = "from Class c where c.name = ?";
 		List list = getHibernateTemplate().find(HQL,classNumber);
 		if(list.size() == 0){
 			Class clazz = new Class();

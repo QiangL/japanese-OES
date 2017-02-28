@@ -99,7 +99,7 @@ public class AdminController extends BaseController{
 			e.printStackTrace();
 		}
 		
-		return null;
+		return new ModelAndView("import");
 	}
 	
 	
