@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 
 import org.ssdut.japanese.oes.cons.*;
 import org.apache.commons.lang3.StringUtils;
+import org.ssdut.japanese.oes.entity.Admin;
 import org.ssdut.japanese.oes.entity.Teacher;
 import org.ssdut.japanese.oes.entity.User;
 
@@ -27,7 +28,7 @@ public class ForumFilter implements Filter {
 	private static final String FILTERED_REQUEST = "@@session_context_filtered_request";
 	// ① 不需要登录即可访问的URI资源
 	private static final String[] INHERENT_ESCAPE_URIS = { "index.html","about.html","login.html",
-		"register.html","teacher/login","user/login"
+		"register.html","teacher/login","user/login","admin.html","admin/login"
 			 };
 	//Teacher 才可以访问的资源，这里写的笨了
 	private static final String[] Teacher_URIS={"teacher/paperGenerate","teacher/uploadFile","teacher/upload","success",
@@ -35,12 +36,14 @@ public class ForumFilter implements Filter {
 		"teacher/grade","teacher/students","teacher/getRecords","teacher/getRecord","teacher/score"};
 	//User 才可以访问的资源
 	private static final String[] User_URIS={"begin","user/record","user/examBegin","user/getQuestion"};
+	
+	private static final String[] Adamin_URLS={"admin/import","admin/students","admin/teachers","admin/update/student",
+		"admin/update/teacher","admin/delete/teacher","admin/delete/student","admin/getImport"};
 	// ② 执行过滤
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=utf-8");
         HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse=(HttpServletResponse)response;
 		// ②-1 保证该过滤器在一次请求中只被调用一次
@@ -53,31 +56,39 @@ public class ForumFilter implements Filter {
 			request.setAttribute(FILTERED_REQUEST, Boolean.TRUE);
 			User userContext = getSessionUser(httpRequest);
 			Teacher teacherContext=getSessionTeacher(httpRequest);
+			Admin adminContext=getSessionAdmin(httpRequest);
 			// ②-3 用户未登录, 且当前URI资源需要登录才能访问 //以前的注释了，不用看
 			String errorMsg="请登录后操作";
 			String contextPath=httpRequest.getContextPath()+"/login.html?errorMsg=";
 			//没登陆
-			if(userContext==null && teacherContext==null){
+			if(userContext==null && teacherContext==null&&adminContext==null){
 				if(!isURILogin(httpRequest.getRequestURI(), httpRequest,"All")){
 					httpResponse.sendRedirect(contextPath+URLEncoder.encode(errorMsg, "utf-8"));
 					return;
 				}
 			}
 			//登陆不同角色
-			else if(userContext!=null && teacherContext!=null){
-				httpResponse.sendRedirect(contextPath+URLEncoder.encode("同时登录多个账号，请关闭浏览器后打开再操作","utf-8"));
+			else if(userContext!=null && teacherContext!=null||userContext!=null&&adminContext!=null||
+					adminContext!=null&&teacherContext!=null){
+				httpResponse.sendRedirect(contextPath+URLEncoder.encode("同时登录多个账号，请重新登录","utf-8"));
 				setSessionTeacher(httpRequest, null);
 				setSessionUser(httpRequest, null);
+				setSessionAdmin(httpRequest, null);
 				return;
 			}
 			else if(userContext!=null){
 				if(!isURILogin(httpRequest.getRequestURI(), httpRequest,"User")){
-					httpResponse.sendRedirect(contextPath+errorMsg);
+					httpResponse.sendRedirect(contextPath+URLEncoder.encode(errorMsg, "utf-8"));
 					return;
 				}
 			}else if(teacherContext!=null){
 				if(!isURILogin(httpRequest.getRequestURI(), httpRequest, "Teacher")){
-					httpResponse.sendRedirect(contextPath+"/login.html?errorMsg=请登录后操作");
+					httpResponse.sendRedirect(contextPath+URLEncoder.encode(errorMsg, "utf-8"));
+					return;
+				}
+			}else if(adminContext!=null){
+				if(!isURILogin(httpRequest.getRequestURI(), httpRequest, "Admin")){
+					httpResponse.sendRedirect(httpRequest.getContextPath()+"/admin.html?"+URLEncoder.encode(errorMsg, "utf-8"));
 					return;
 				}
 			}
@@ -101,8 +112,10 @@ public class ForumFilter implements Filter {
 			}
 			chain.doFilter(request, response);
 			*/
+		}else{
+			chain.doFilter(request, response);
 		}
-		chain.doFilter(request, response);
+		
 	}
 
 	@Override
@@ -112,7 +125,7 @@ public class ForumFilter implements Filter {
     * 当前URI资源是否可以访问访问
     * @param requestURI
     * @param request
-    * @param type 用户类型 Teacher 还是 User 还是 All
+    * @param type 用户类型 Teacher 还是 User 还是 All 还是admin
     * @return true 表示可以访问
     */
 	private boolean isURILogin(String requestURI, HttpServletRequest request,String type) {
@@ -127,6 +140,12 @@ public class ForumFilter implements Filter {
 			}
 		}else if(type.equals("User")){
 			for (String uri : User_URIS) {
+				if (requestURI != null && requestURI.indexOf(uri) >= 0) {
+					return true;
+				}
+			}
+		}else if(type.equals("Admin")){
+			for (String uri : Adamin_URLS) {
 				if (requestURI != null && requestURI.indexOf(uri) >= 0) {
 					return true;
 				}
@@ -155,7 +174,12 @@ public class ForumFilter implements Filter {
 	protected HttpSession getSession(HttpServletRequest request) {
 		return request.getSession();		
 	}
-
+	protected void setSessionAdmin(HttpServletRequest request,Admin user) {
+		getSession(request).setAttribute(CommonConstant.ADMIN_CONTEXT, user);
+	}
+	protected Admin getSessionAdmin(HttpServletRequest request){
+		return (Admin) request.getSession().getAttribute(CommonConstant.ADMIN_CONTEXT);
+	}
 	@Override
 	public void destroy() {
 

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.ssdut.japanese.oes.cons.CommonConstant;
+import org.ssdut.japanese.oes.entity.Admin;
 import org.ssdut.japanese.oes.entity.Teacher;
 import org.ssdut.japanese.oes.entity.User;
 
@@ -71,7 +72,12 @@ public class BaseController {
 	protected Teacher getSessionTeacher(HttpServletRequest request){
 		return (Teacher) getSession(request).getAttribute(CommonConstant.TEACHER_CONTEXT);
 	}
-	
+	protected void setSessionAdmin(HttpServletRequest request,Admin user) {
+		getSession(request).setAttribute(CommonConstant.ADMIN_CONTEXT, user);
+	}
+	protected Admin getSessionAdmin(HttpServletRequest request){
+		return (Admin) request.getSession().getAttribute(CommonConstant.ADMIN_CONTEXT);
+	}
 	
 	public String toJson(Object object){
 		return gson.toJson(object);

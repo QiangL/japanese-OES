@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.ssdut.japanese.oes.dao.impl.Page;
+import org.ssdut.japanese.oes.entity.Admin;
 import org.ssdut.japanese.oes.entity.Teacher;
 import org.ssdut.japanese.oes.entity.User;
 import org.ssdut.japanese.oes.exception.UserNotFoundException;
@@ -45,6 +46,9 @@ public class AdminController extends BaseController{
 		String admin = ctx.getInitParameter("admin");
 		String pass = ctx.getInitParameter("password");
 		if(admin.equals(name) && pass.equals(password)){
+			Admin a=new Admin();
+			a.setName(admin);
+			setSessionAdmin(request,a);
 			return "import";
 		}
 		else{
