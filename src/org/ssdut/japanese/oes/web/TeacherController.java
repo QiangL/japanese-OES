@@ -54,7 +54,9 @@ public class TeacherController extends BaseController{
 			//密码验证
 			if(teacherService.login(t)){
 				//setSessionUser(request, t);
-				String toUrl = (String)request.getSession().getAttribute(CommonConstant.LOGIN_TO_URL);
+				//String toUrl = (String)request.getSession().getAttribute(CommonConstant.LOGIN_TO_URL);
+				setSessionTeacher(request, t);
+				return "redirect:/teacher/paperGenerate.html";
 			}
 			else{
 				modelMap.addAttribute("errorMsg", "密码错误，请再次确认");
@@ -65,7 +67,7 @@ public class TeacherController extends BaseController{
 			modelMap.addAttribute("errorMsg", e.getMessage());
 			return "redirect:/login.html";
 		}
-		return "redirect:/teacher/paperGenerate.html";
+		
 	}
 	/*
 	@RequestMapping(value="teacher/login",method=RequestMethod.POST)

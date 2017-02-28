@@ -53,23 +53,14 @@
 	</listener>
 	
 	<!-- 过滤未登录用户 -->
-<!--<filter>
+<filter>
 		<filter-name>forumFilter</filter-name>
 		<filter-class>org.ssdut.japanese.oes.web.ForumFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>forumFilter</filter-name>
-		<url-pattern>*.html</url-pattern>
+		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	<filter-mapping>
-		<filter-name>forumFilter</filter-name>
-		<url-pattern>*.jsp</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>forumFilter</filter-name>
-		<url-pattern>/</url-pattern>
-	</filter-mapping>
-	-->
   <filter>
     <filter-name>SetChatacterencoding</filter-name>
     <filter-class>

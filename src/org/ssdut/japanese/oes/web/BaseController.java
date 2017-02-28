@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.ssdut.japanese.oes.cons.CommonConstant;
+import org.ssdut.japanese.oes.entity.Teacher;
 import org.ssdut.japanese.oes.entity.User;
 
 import com.google.gson.Gson;
@@ -63,6 +64,14 @@ public class BaseController {
 	protected User getSessionUser(HttpServletRequest request){
 		return (User) getSession(request).getAttribute(CommonConstant.USER_CONTEXT);
 	}
+	
+	protected void setSessionTeacher(HttpServletRequest request,Teacher user) {
+		getSession(request).setAttribute(CommonConstant.TEACHER_CONTEXT, user);
+	}
+	protected Teacher getSessionTeacher(HttpServletRequest request){
+		return (Teacher) getSession(request).getAttribute(CommonConstant.TEACHER_CONTEXT);
+	}
+	
 	
 	public String toJson(Object object){
 		return gson.toJson(object);

@@ -8,6 +8,8 @@ public class CommonConstant {
 	    */
 	   public static final String USER_CONTEXT = "USER_CONTEXT";
 	   
+	   public static final String TEACHER_CONTEXT= "TEACHER_CONTEXT";
+	   
 	   public static final String KAPTCHA_SESSION_KEY = "KAPTCHA_SESSION_KEY";
 	   
 	   public static final String LOGIN_TO_URL = "LOGIN_TO_URL";
