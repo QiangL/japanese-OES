@@ -181,7 +181,6 @@ public class TeacherController extends BaseController{
 		Type type = new TypeToken<List<Bean>>() {}.getType();
 		List<Bean> questionList = (List<Bean>) fromJson(questions, type);
 		//试卷命名规则: 教师指定名字+组卷时间
-		System.out.println(questionList);
 		String path = getResourcePath(request) + "/exam/" + examName;
 		try {
 			teacherService.generateTestPaper(questionList, path);

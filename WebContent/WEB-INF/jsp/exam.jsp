@@ -46,8 +46,8 @@
 			<div class="row">
 			<div class = "span8">
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="#">普通题</a></li>
-					<li><a href="#">图片题</a></li>
+					<li id="general_question" class="active"><a href="#">普通题</a></li>
+					<li id="img_question" ><a href="#">图片题</a></li>
 				</ul>
 				</div>
 				<div class="span4">
@@ -59,15 +59,23 @@
 				<h3 id="name">${es.name}</h3>
 					<h4 class="widget-header1">题目信息</h4>
 					<div class="widget-body">
-						<div>
+						<div style="margin-left:70px;">
 							<p>
-								<span id="time">0:00</span> <span>题目描述：</span>
+								<audio id="general_src" src="" controls="true"></audio><br>
+								<img id="img_src" src="" style="display: none"/>
+							</p>
+							<p>
+								<span>录音时长：</span><span id="time">0:00</span> 
+								<input type="hidden" value="" id="qid_input"/>
+								
 							</p>
 						</div>
 						<div class="center-align">
+							<!-- 
 							<input type="button" value="试听" class="btn" onclick="" />
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-								type="button" value="录音" class="btn" onclick="record()" />
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							-->
+							 <input type="button" value="录音" class="btn" onclick="record()" />
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
 								type="button" value="停止" class="btn" onclick="stop()" />
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input

@@ -19,6 +19,9 @@ import org.hibernate.annotations.GenericGenerator;
 @GenericGenerator(name="idGenerator", strategy="uuid")
 public class ImgQuestion extends Question{
 
+	/*
+	 * 修改resourse功能，原来干啥的不知道，现在用作存放图片题相对应的音频
+	 */
 	@Column(name = "resource")
 	private String resource;
 	

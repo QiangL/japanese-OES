@@ -73,7 +73,7 @@ function getRecord(rid){
 		url:url+"teacher/getRecord",
 		data:{rid:rid},
 		success:function(data){
-			alert(data);
+			//alert(data);
 			player.src=data.toString();
 		},
 	});

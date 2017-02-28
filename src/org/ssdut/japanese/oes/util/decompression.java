@@ -91,6 +91,7 @@ public class decompression {
 	  					imgQuestion.setDescription(zipEntry.getName());
 	  					imgQuestion.setUpDate(time);
 	  					imgQuestion.setTitle(title);
+	  					imgQuestion.setResource("");
 	  					queInfo.add(imgQuestion);
 	  				}
 	              }
