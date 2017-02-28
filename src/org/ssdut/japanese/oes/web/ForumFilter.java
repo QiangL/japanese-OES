@@ -88,7 +88,7 @@ public class ForumFilter implements Filter {
 				}
 			}else if(adminContext!=null){
 				if(!isURILogin(httpRequest.getRequestURI(), httpRequest, "Admin")){
-					httpResponse.sendRedirect(httpRequest.getContextPath()+"/admin.html?"+URLEncoder.encode(errorMsg, "utf-8"));
+					httpResponse.sendRedirect(contextPath+URLEncoder.encode(errorMsg, "utf-8"));
 					return;
 				}
 			}
