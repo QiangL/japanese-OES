@@ -89,7 +89,7 @@ public class XMLUtil {
 				general.addElement("name").addText(question.getName());//设置文件名
 				general.addElement("url").addText(question.getUrl());//设置url
 				general.addElement("description").addText(question.getDescription());
-				general.addElement("resource");//设置指向的资源路径
+				general.addElement("resource").addText(((ImgQuestion)question).getResource());//设置指向的资源路径
 			}
 		}
 		return document;

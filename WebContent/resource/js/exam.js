@@ -58,9 +58,7 @@ function display(content,type){
       $("#" + type + "_src").attr("src", basePath + $(examContent).find("#" + qid).find("name").text());
     } else {
       $("#" + type + "_src").attr("src", basePath + $(examContent).find("#" + qid).find("name").text());
-      var description = $(examContent).find("#" + qid).find("description").text();
-      var audioPath = $(examContent).find("#" + qid).find(description.substring(0, description.indexOf('.')))
-        .siblings('name').text();
+      var audioPath = $(examContent).find("#" + qid).find("resource").text();
       $("#general_src").attr("src",basePath+audioPath);
     }
     
