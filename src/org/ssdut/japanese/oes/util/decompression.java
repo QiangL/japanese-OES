@@ -101,7 +101,7 @@ public class decompression {
   					}else{
   						url = CommonConstant.QUESTION_URL + "imgQuestion/";
   	  					ImgQuestion imgQuestion = new ImgQuestion();
-  	  					imgQuestion.setName(fileName);;
+  	  					
   	  					imgQuestion.setType(type.toString());
   	  					imgQuestion.setUrl(url);
   	  					imgQuestion.setDescription(zipEntry.getName());
@@ -109,8 +109,10 @@ public class decompression {
   	  					imgQuestion.setTitle(title);
   	  					if(Arrays.asList(PICTYPE).contains(zipEntry.getName().substring(zipEntry.getName().lastIndexOf('.')+1))){//当前的是PIC
   	  						imgQuestion.setResource(audioNameMap.get(zipEntry.getName().substring(0, zipEntry.getName().lastIndexOf('.'))));
+  	  						imgQuestion.setName(fileName);
   	  					}else{
   	  						imgQuestion.setResource(fileName);
+  	  						imgQuestion.setName(audioNameMap.get(zipEntry.getName().substring(0, zipEntry.getName().lastIndexOf('.'))));
   	  					}
   	  					queInfo.add(imgQuestion);
   					}
